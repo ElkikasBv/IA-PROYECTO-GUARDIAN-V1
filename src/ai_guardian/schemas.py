@@ -9,8 +9,8 @@ class ClaimExtraction(BaseModel):
     claims: list[Claim]
 
 class Verdict(BaseModel):
-    label: Literal["supported", "contradicted", "not_enough_info"]
     explanation: str
+    label: Literal["supported", "contradicted", "not_enough_info"]
 
 
 class CheckResult(BaseModel):
