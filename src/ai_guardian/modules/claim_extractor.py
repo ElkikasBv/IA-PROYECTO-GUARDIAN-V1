@@ -11,15 +11,17 @@ def extract_claims(text: str) -> ClaimExtraction:
 
             "role": "system",
             "content": (
-                "Extrae afirmaciones verificables del texto. "
+                "Extrae SOLO afirmaciones verificables (datos que se pueden comprobar). "
+                "NO extraigas opiniones, gustos ni creencias personales. "
                 "Cada afirmación debe ser una oración completa que se entienda sola: "
-                "SIEMPRE incluye el sujeto con su nombre, nunca uses pronombres "
-                "ni omitas el sujeto. Ignora opiniones.\n\n"
-                "Ejemplo:\n"
+                "SIEMPRE incluye el sujeto con su nombre, nunca uses pronombres.\n\n"
+                "Ejemplo 1:\n"
                 "Texto: Messi nació en Rosario y tiene 3 Mundiales.\n"
-                "Afirmaciones: "
                 '{"claims": [{"text": "Messi nació en Rosario."}, '
-                '{"text": "Messi tiene 3 Mundiales."}]}'
+                '{"text": "Messi tiene 3 Mundiales."}]}\n\n'
+                "Ejemplo 2:\n"
+                "Texto: Pienso que el café es horrible, pero Brasil produce mucho café.\n"
+                '{"claims": [{"text": "Brasil produce mucho café."}]}'
             ),
         },
         {"role": "user", "content": text},

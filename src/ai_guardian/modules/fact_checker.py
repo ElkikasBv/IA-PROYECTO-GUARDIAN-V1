@@ -14,22 +14,20 @@ def check_claim(claim: str, evidence: list[Evidence]) -> CheckResult:
         )
 
     texto_evidencia = "\n\n".join(
-        f"[{i}] Fuente: {e.source} ({e.url})\n{e.snippet}"
+        f"[{i}] Fuente: {e.source} ({e.url})\n{e.snippet[:500]}"
         for i, e in enumerate(evidence, start=1)
     )
 
     instrucciones = (
         "Eres un verificador de afirmaciones. Recibirás una AFIRMACIÓN y una EVIDENCIA. "
         "Decide usando SOLO el texto de la evidencia, nunca lo que tú creas saber. "
-        "Responde con una de estas etiquetas: "
-        "supported (la evidencia respalda la afirmación), "
-        "contradicted (la evidencia dice algo distinto o la contradice), "
-        "not_enough_info (la evidencia no habla de esto o no alcanza para decidir). "
-        "Primero comprueba que la evidencia hable del MISMO sujeto de la afirmación "
-        "(la misma persona, lugar o cosa). Si habla de otro sujeto, "
-        "responde not_enough_info. "
-        "Si dudas, elige not_enough_info. "
-        "Escribe una explicación corta, de una o dos oraciones, en español."
+        "Primero escribe una explicación corta, de una o dos oraciones, en español. "
+        "Después elige la etiqueta que coincida con tu explicación: "
+        "supported (la evidencia dice lo mismo que la afirmación), "
+        "contradicted (la evidencia dice explícitamente lo contrario), "
+        "not_enough_info (la evidencia no habla del tema o de ese sujeto). "
+        "Si tu explicación dice que la evidencia no menciona el tema, "
+        "la etiqueta DEBE ser not_enough_info."
     )
 
     mensajes = [
