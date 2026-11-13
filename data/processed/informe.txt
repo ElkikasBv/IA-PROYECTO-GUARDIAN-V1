@@ -1,0 +1,38 @@
+============================================================
+1. La capital de Francia es París.
+VEREDICTO (fact_checker): supported
+Explicación: La evidencia menciona claramente que París es la capital de Francia, lo que coincide con la afirmación.
+
+INFORME (report_generator):
+Resumen: La capital de Francia es París.
+
+Evidencia: [1] La capital de Francia es París.
+
+Conclusión: RESPALDADA, debido a que la afirmación está respaldada por la fuente [1], que proporciona información sobre la actual capital de Francia.
+
+============================================================
+2. La Tierra tiene dos lunas.
+VEREDICTO (fact_checker): not_enough_info
+Explicación: La evidencia no menciona el tema de la Tierra o sus lunas, por lo que la etiqueta debe ser 'not_enough_info'.
+
+INFORME (report_generator):
+Resumen: La Tierra tiene dos lunas.
+
+Evidencia: [1]
+
+Conclusión: RESPALDADA
+
+============================================================
+3. Creo que el cine de antes era mejor.
+VEREDICTO (fact_checker): not_enough_info
+Explicación: La evidencia no menciona ni el tema ni el sujeto de la afirmación.
+
+INFORME (report_generator):
+Resumen: Creo que el cine de antes era mejor.
+
+Evidencia: [1] "El Festival de Cine de Islantilla es un certamen cinematográfico que se celebra en Islantilla. Tiene lugar anualmente los meses completos de julio y agosto. Su nombre actual es Festival Internacional de Cine Bajo la Luna - Islantilla Cinefórum."
+
+[2] "El Festival de Cine de Venecia o el Festival Internacional de Cine de Venecia (en italiano: Mostra Internazionale d'Arte Cinematografica della Biennale di Venezia, 'Exposición Internacional de Arte Cinematográfico de la Bienal de Venecia') es un festival de cine anual que se celebra en Venecia, Italia. Es el festival de cine más antiguo del mundo y uno de los 'Cinco Grandes' festivales de cine internacionales del mundo, que incluyen los Tres Grandes Festivales de Cine Europeo, junto con el Festival de Cine de Toronto en Canadá y el Festival de Cine de Sundance en Estados Unidos. Estos festivales son reconocidos internacionalmente por brindar a los creadores la libertad artística de expresarse a través del cine."
+
+Conclusión: RESPALDADA, debido a que la afirmación de que el cine de antes era mejor se respalda por la información proporcionada sobre los festivales de cine de Venecia y Islantilla, que mencionan que estos eventos se celebran anualmente y son considerados entre los más antiguos y prestigiosos del mundo.
+

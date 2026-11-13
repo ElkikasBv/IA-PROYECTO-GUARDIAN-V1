@@ -1,24 +1,29 @@
 from ai_guardian.modules.claim_extractor import extract_claims
 from ai_guardian.modules.evidence_retriever import search_evidence
 from ai_guardian.modules.fact_checker import check_claim
+from ai_guardian.modules.report_generator import generate_report
 
 
 def main():
-    texto = "La capital de Francia es París y tiene aproximadamente 2 millones de habitantes."
+    texto = (
+        "La capital de Francia es París. "
+        "La Tierra tiene dos lunas. "
+        "Creo que el cine de antes era mejor, aunque Titanic salió en 1997."
+    )
 
-    afirmaciones = extract_claims(texto).claims
+    for i, claim in enumerate(extract_claims(texto).claims, start=1):
+        evidencia = search_evidence(claim.text, limit=2)
 
-    for i, claim in enumerate(afirmaciones, start=1):
-        evidencia = search_evidence(claim.text)
-        for e in evidencia:
-            print(e.snippet)
-        resultado = check_claim(claim.text, evidencia)
+        veredicto = check_claim(claim.text, evidencia)
+        informe = generate_report(claim.text, evidencia)
 
-        print(f"{i}. {resultado.claim}")
-        print(f"   Resultado: {resultado.label}")
-        print(f"   Explicación: {resultado.explanation}")
-        for url in resultado.evidence_urls:
-            print(f"   Fuente: {url}")
+        print("=" * 60)
+        print(f"{i}. {claim.text}")
+        print(f"VEREDICTO (fact_checker): {veredicto.label}")
+        print(f"Explicación: {veredicto.explanation}")
+        print()
+        print("INFORME (report_generator):")
+        print(informe)
         print()
 
 
