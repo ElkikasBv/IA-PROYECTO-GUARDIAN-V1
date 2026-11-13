@@ -11,8 +11,15 @@ def extract_claims(text: str) -> ClaimExtraction:
 
             "role": "system",
             "content": (
-                "Extrae afirmaciones verificables e independientes del texto. "
-                "cada afirmación debe ser una oracion corta y autocoontenida"
+                "Extrae afirmaciones verificables del texto. "
+                "Cada afirmación debe ser una oración completa que se entienda sola: "
+                "SIEMPRE incluye el sujeto con su nombre, nunca uses pronombres "
+                "ni omitas el sujeto. Ignora opiniones.\n\n"
+                "Ejemplo:\n"
+                "Texto: Messi nació en Rosario y tiene 3 Mundiales.\n"
+                "Afirmaciones: "
+                '{"claims": [{"text": "Messi nació en Rosario."}, '
+                '{"text": "Messi tiene 3 Mundiales."}]}'
             ),
         },
         {"role": "user", "content": text},
@@ -22,6 +29,7 @@ def extract_claims(text: str) -> ClaimExtraction:
         model=OLLAMA_MODEL,
         messages=mensajes,
         format=ClaimExtraction.model_json_schema(),
+        options={"temperature": 0},
     )
 
     return ClaimExtraction.model_validate_json(respuesta.message.content)
